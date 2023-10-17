@@ -4,13 +4,12 @@ public class dfsm {
     ArrayList<state> states;
     ArrayList<String> alphabet;
     state currState;
-    //int numStates;//maybe unnecessary
+    
     public dfsm() {
         //constructor
         states = new ArrayList<state>();
         alphabet = new ArrayList<String>();
         currState = new state();
-        //numStates = 0;
     }
 
     public void setAlphabet(String[] alphabet){
@@ -35,14 +34,21 @@ public class dfsm {
         return this.states;
     }
     
-    public boolean accepts(String str){
+    public boolean checkString(String str){
         //check if machine accepts the string
         for(int i = 0; i < str.length(); i++){
             //transition for every character in str
             int transitionTo = currState.transition(str.charAt(i));
             currState = states.get(transitionTo);
         }
+        if(currState.accepts()){
+            return true;
+        }
 
         return false;
+    }
+
+    public void reset(){
+        currState = states.get(0);
     }
 }
