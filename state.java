@@ -16,10 +16,12 @@ public class state {
     public void addFunction(ArrayList<String> function){
         functions.add(function);
     }
+    public boolean accepts(){
+        return this.isAccepting;
+    }
 
     public int transition(char input){
-        //transition to the next state
-        //return the next state
+        //return the index of the next state
         for(int i = 0; i < functions.size(); i++){
             if(functions.get(i).get(1).charAt(0) == input){
                 return Integer.parseInt(functions.get(i).get(2));
